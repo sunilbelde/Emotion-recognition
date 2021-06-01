@@ -2,8 +2,7 @@ import streamlit as st
 import numpy as np    
 import tensorflow as tf
 import librosa # to extract speech features
-import pyaudio
-import wave
+
 
 
 def main():
@@ -32,7 +31,7 @@ def application():
     file_to_be_uploaded = st.file_uploader("Choose an audio...", type="wav")
     
     if file_to_be_uploaded:
-        st.success('Emotion of the audio is  ',predict(model,'input.wav'))
+        st.success('Emotion of the audio is  ',predict(model,file_to_be_uploaded))
 
 def extract_mfcc(wav_file_name):
     #This function extracts mfcc features and obtain the mean of each dimension
