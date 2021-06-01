@@ -4,4 +4,4 @@ streamlit==0.80.0
 sounddevice
 scipy
 librosa==0.8.0
-libportaudio2
+PyAudio
