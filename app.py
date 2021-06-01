@@ -15,7 +15,14 @@ def main():
     if selected_box == 'Emotion Recognition':        
         st.sidebar.success('To try by yourself select "Evaluate the model".')
         application()
+    if selected_box=='view source code':
+        st.code(get_file_content_as_string("app.py"))
 
+@st.cache(show_spinner=False)
+def get_file_content_as_string(path):
+    url = 'https://raw.githubusercontent.com/sunilbelde/Emotion-recognition/main/' + path
+    response = urllib.request.urlopen(url)
+    return response.read().decode("utf-8")
     
 @st.cache(show_spinner=False)
 def load_model():
