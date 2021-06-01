@@ -41,7 +41,8 @@ def application():
     
     if file_to_be_uploaded:
         st.audio(file_to_be_uploaded, format='audio/wav')
-        st.success('Emotion of the audio is  '+predict(model,file_to_be_uploaded))
+        emotion=predict(model,file_to_be_uploaded)
+        st.success('Emotion of the audio is  '+emotion+emoji.emojize(":grinning_face_with_big_eyes:"))
 
 def extract_mfcc(wav_file_name):
     #This function extracts mfcc features and obtain the mean of each dimension
