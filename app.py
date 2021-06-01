@@ -45,7 +45,7 @@ def application():
         emojis_={'neutral': ':neutral_face:' ,'calm': ':innocent:' ,  'happy' :':smiley:' , 'sad' : ':disappointed:'
                     , 'angry' : ':rage:' ,'fearful' : ':fearful:', 'disgust' : ':triumph:' ,'surprised' : ':open_mouth:' }
         
-        st.success('Emotion of the audio is  '+emotion+emoji.emojize(emojis_[emotion]))
+        st.success('Emotion of the audio is  '+emotion+" "+emoji.emojize(emojis_[emotion]))
 
 def extract_mfcc(wav_file_name):
     #This function extracts mfcc features and obtain the mean of each dimension
