@@ -1,0 +1,64 @@
+import streamlit as st
+import numpy as np    
+import tensorflow as tf
+import sounddevice as sd
+from scipy.io.wavfile import write
+import librosa # to extract speech features
+
+def main():
+    #print(cv2.__version__)
+    selected_box = st.sidebar.selectbox(
+        'Choose an option..',
+        ('Emotion Recognition','hello')
+        )
+            
+    if selected_box == 'Emotion Recognition':        
+        st.sidebar.success('To try by yourself select "Evaluate the model".')
+        application()
+
+
+
+    
+    
+@st.cache(show_spinner=False)
+def load_model():
+    model=tf.keras.models.load_model('mymodel.h5')
+    
+    return model
+def application():
+    models_load_state=st.text('\n Loading models..')
+    model=load_model()
+    models_load_state.text('\n Models Loading..complete')
+    
+    fs = 44100  # Sample rate
+    seconds = 3  # Duration of recording
+    
+    record = st.button('Record Now')
+    
+    if record:
+        myrecording = sd.rec(int(seconds * fs), samplerate=fs, channels=2)
+        sd.wait()  # Wait until recording is finished
+        write('input.wav', fs, myrecording)  # Save as WAV file 
+        st.success('Emotion of the audio is  ',predict(model,'input.wav'))
+        
+
+def extract_mfcc(wav_file_name):
+    #This function extracts mfcc features and obtain the mean of each dimension
+    #Input : path_to_wav_file
+    #Output: mfcc_features'''
+    y, sr = librosa.load(wav_file_name)
+    mfccs = np.mean(librosa.feature.mfcc(y=y, sr=sr, n_mfcc=40).T,axis=0)
+    
+    return mfccs
+    
+    
+def predict(model,wav_filepath):
+    emotions={1 : 'neutral', 2 : 'calm', 3 : 'happy', 4 : 'sad', 5 : 'angry', 6 : 'fearful', 7 : 'disgust', 8 : 'surprised'}
+    test_point=extract_mfcc(wav_filepath)
+    test_point=np.reshape(test_point,newshape=(1,40,1))
+    predictions=model.predict(test_point)
+    print(emotions[np.argmax(predictions[0])+1])
+    
+    return emotions[np.argmax(predictions[0])+1]
+if __name__ == "__main__":
+    main()
