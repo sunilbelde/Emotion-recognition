@@ -31,7 +31,7 @@ def application():
     file_to_be_uploaded = st.file_uploader("Choose an audio...", type="wav")
     
     if file_to_be_uploaded:
-        st.success('Emotion of the audio is  ',predict(model,file_to_be_uploaded))
+        st.success('Emotion of the audio is  '+predict(model,file_to_be_uploaded))
 
 def extract_mfcc(wav_file_name):
     #This function extracts mfcc features and obtain the mean of each dimension
