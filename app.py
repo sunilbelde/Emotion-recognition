@@ -42,7 +42,10 @@ def application():
     if file_to_be_uploaded:
         st.audio(file_to_be_uploaded, format='audio/wav')
         emotion=predict(model,file_to_be_uploaded)
-        st.success('Emotion of the audio is  '+emotion+emoji.emojize(":grinning_face_with_big_eyes:"))
+        emojis_={'neutral': ':neutral_face:' ,'calm': ':innocent:' ,  'happy' :':smiley:' , 'sad' : ':disappointed:'
+                    , 'angry' : ':rage:' ,'fearful' : ':fearful:', 'disgust' : ':triumph:' ,'surprised' : ':open_mouth:' }
+        
+        st.success('Emotion of the audio is  '+emotion+emoji.emojize(emojis_[emotion]))
 
 def extract_mfcc(wav_file_name):
     #This function extracts mfcc features and obtain the mean of each dimension
