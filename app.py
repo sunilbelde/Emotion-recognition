@@ -9,7 +9,7 @@ def main():
     #print(cv2.__version__)
     selected_box = st.sidebar.selectbox(
         'Choose an option..',
-        ('Emotion Recognition','hello')
+        ('Emotion Recognition','view source code')
         )
             
     if selected_box == 'Emotion Recognition':        
