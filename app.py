@@ -39,6 +39,7 @@ def application():
     file_to_be_uploaded = st.file_uploader("Choose an audio...", type="wav")
     
     if file_to_be_uploaded:
+        st.audio(file_to_be_uploaded, format='audio/wav')
         st.success('Emotion of the audio is  '+predict(model,file_to_be_uploaded))
 
 def extract_mfcc(wav_file_name):
