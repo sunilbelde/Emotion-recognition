@@ -3,4 +3,5 @@ numpy==1.19.5
 streamlit==0.80.0
 sounddevice
 scipy
-librosa
+librosa==0.8.0
+libportaudio2
