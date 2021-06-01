@@ -14,7 +14,7 @@ def main():
         )
             
     if selected_box == 'Emotion Recognition':        
-        st.sidebar.success('To try by yourself select "Evaluate the model".')
+        st.sidebar.success('To try by yourself by adding a audio file .')
         application()
     if selected_box=='view source code':
         st.code(get_file_content_as_string("app.py"))
