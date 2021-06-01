@@ -28,8 +28,6 @@ def application():
     model=load_model()
     models_load_state.text('\n Models Loading..complete')
     
-    fs = 44100  # Sample rate
-    seconds = 3  # Duration of recording
     
     file_to_be_uploaded = st.file_uploader("Choose an audio...", type="wav")
     
