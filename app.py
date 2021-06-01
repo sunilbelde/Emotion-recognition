@@ -15,7 +15,8 @@ def main():
         )
             
     if selected_box == 'Emotion Recognition':        
-        st.sidebar.success('To try by yourself by adding a audio file .')
+        st.sidebar.success('To try by yourself by adding a audio file and see the emotions  .'+emoji.emojize(":grinning_face_with_big_eyes:")+
+                          emoji.emojize(":winking_face_with_tongue:"))
         application()
     if selected_box=='view source code':
         st.code(get_file_content_as_string("app.py"))
